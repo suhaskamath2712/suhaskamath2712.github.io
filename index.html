@@ -1,10 +1,280 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Personal Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Portfolio</title>
+    <style>
+        /* --- CSS VARIABLES FOR EASY COLOR CHANGES --- */
+        :root {
+            --primary-color: #2c3e50; /* Dark Blue */
+            --accent-color: #3498db;  /* Light Blue */
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: var(--white);
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            margin-bottom: 20px;
+            background-color: #ddd; /* Placeholder color */
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        section {
+            background: var(--white);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+        }
+
+        .grid-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav { flex-direction: column; height: auto; padding: 10px 0; }
+            .nav-links { margin-top: 10px; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my website hosted on GitHub.</p>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Your Name</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#research">Research and Interests</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="container">
+            <img src="profile.png" alt="Profile Photo" class="profile-img">
+            <h1>Suhas Kamath</h1>
+            <p><strong>M. Tech (Computational & Data Science) </strong> at <strong>Indian Institute of Science, Bengaluru</strong></p>
+            <!--
+            <p>Brief tagline about what you study or build (e.g., Numerical Analysis, Data Science, or Web Development).</p>
+            -->
+            <div class="social-links">
+                <a href="https://github.com/suhaskamath2712">GitHub</a>
+                <a href="https://www.linkedin.com/in/suhas-kamath-4472b1215/">LinkedIn</a>
+                <a href="mailto:suhaskamath672@gmail.com">Email (Personal)</a>
+                <a href="mailto:suhaskamath@iisc.ac.in">Email (Official)</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                Hello! I am a M. Tech (Computational & Data Science) student studying at Indian Institute of Science, Bengaluru. 
+                My work focuses on Databases and Query Optimization.
+            </p>
+            <br>
+            <p>
+                When I am not coding, I enjoy watching TMKOC and playing GTA games.
+            </p>
+        </section>
+
+        <!--
+        <section id="research">
+            <h2>Research Interests</h2>
+            <ul style="padding-left: 20px;">
+                <li><strong>Topic A:</strong> Description of why this interests you.</li>
+                <li><strong>Topic B:</strong> Description of previous work in this area.</li>
+                <li><strong>Topic C:</strong> Future goals in this field.</li>
+            </ul>
+        </section>
+        
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="grid-list">
+                <div class="card">
+                    <h3>Project Title 1</h3>
+                    <p>A brief description of the project. Mention the tech stack used (e.g., Python, C++, SQL).</p>
+                    <a href="#">View Code &rarr;</a>
+                </div>
+                <div class="card">
+                    <h3>Project Title 2</h3>
+                    <p>A brief description of the project. Mention the tools or libraries used.</p>
+                    <a href="#">View Code &rarr;</a>
+                </div>
+                <div class="card">
+                    <h3>Project Title 3</h3>
+                    <p>A brief description of the project.</p>
+                    <a href="#">View Code &rarr;</a>
+                </div>
+            </div>
+        </section>
+        -->
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Feel free to reach out to me for collaborations or questions.</p>
+            <p><strong>Email:</strong> suhaskamath672@gmail.com</p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Suhas Kamath</p>
+    </footer>
+
+    <script>
+        // Automatically update the year in the footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
