@@ -1,0 +1,87 @@
+My SIGMOD Experience:
+
+We were put up in a hostel provided by the MVJ College of Engineering. On the 29th of May, me and my friends from the Database Systems Lab (https://dsl.cds.iisc.ac.in/) travelled from IISc Bangalore to MVJ (approx 2 hours). Much to my detriment, it was raining heavily when we got there. The hostel itself was pretty basic, but it served its purpose. We turned out to be the first ones to arrive, and had out dinner at the college mess. Shortly, turned in for the night.
+
+Day 0: Pre-conference session
+
+We started at 8:30 am and headed to the BMS College of Engineering. As lead volunteer (and the only guy who spoke Kannada), I was responsible for the smooth coordination with the bus drivers. 
+
+Barely surviving through Bangalore traffic, we arrived at BMS at 10:00 am. We attended the talks by Profs. Jayant and Sudarshan, and then by Prasad Deshpande of Databricks. After a short break, we had a talk by Pavan Deolasee of EDB.
+
+(Day0_1.jpg here)
+
+After lunch, we were supposed to have a panel discussion by leaders in the industry. However, because we had to leave for Sheraton Grand, Bangalore (the venue for the main conference), we missed that. The hotel was about 2 hours from BMS. We had to also pick up some of our comrades who arrived at MVJ later than us.
+
+(Day0_2.jpg here)
+
+At Sheraton, we were given a briefing by the organisers and had our dinner there. The preparations were underway, but we were worried, since the stage still looked under construction.
+
+(Day0_3.jpg here)
+
+Day 1: The Workshops!
+
+On day 1, we had several workshops lined up. To get to Sheraton Grand on time, we had to start from MVJ by 7:30. Unfortunately, the breakfast was delayed, and we ended up reaching the venue slightly late. However, we arrived early enough to not miss anything. 
+
+The first session I attended was on quantum databases, in a workshop called "Q-Data". Manish Kesarwani (https://research.ibm.com/people/manish-kesarwani) was presenting "Quantum Index Advisors".
+
+Followed by that, there were a few sessions from various speakers, including Prof. Ahana Pradhan. The sessions ended with a plenary panel discussion on Vector Search. The following panelists were present:
+
+Ravishankar Krishnaswamy (MSRI)
+Alexandra Meliou (UMass Amherst)
+Yannis Papakonstantaniou (Google)
+Yufei Tao (Chinese University of HK)
+David P. Woodruff (CMU)
+
+(Day1_2.jpg here)
+
+The panel discussion was followed by dinner.
+
+Day 2: PODS and DaMoN
+
+We start with an introductory session by the general chairs, Profs. Jayant and Sudarshan. The first talk is by Prof. Jan Van den Bussche of Hasselt University, followed by a talk by Nicolas Bruno and Matteo Interlandi of Microsoft Research.
+
+The last session was the "New Researcher Symposium", where we attended a panel discussion on how new researchers should approach their careers. There was also a Kahoot quiz at the end of the discussion, which I won! As a reward, I was given a bag of Italian chocolates!
+
+Day 3: The Main Conference
+
+Day 3 starts with a talk by the organisers, and then followed by various sessions.
+
+(Day3_1.jpg here)
+
+Today, the sessions ended by 6:30pm, and we left for a dinner organised by IBM at Taj Vivanta (Whitefield), where I got to speak with Prof. C. Mohan. 
+
+(Day3_2.jpg here)
+
+After dinner, we were unsure on how we should get back to the hostel, as the bus had left! We ended up walking almost four kilometers to the hostel. We could have easily gotten a cab, but a lot of the people were averse to the idea.
+
+Day 4: The Main Conference
+
+Day 4 had some more sessions, and I got to know about a new tradition in the database community. In any conference, after the coffee breaks, a bell is rang to inform the participants that the next sessions are starting. However, the database community has a tradition of playing the trumpet (started by Prof. Miron Livny and Joe Hellerstein). This time, Prof. Carsten Binning was the one behind the trumpet.
+
+(Day4_1.jpg here)
+
+The day ended with a beautiful cultural program called "Bharat Paryatana", where various folk dances from across India were presented, followed by dinner.
+
+(Day4_2.jpg here)
+
+Day 5
+
+The day started off with a plenary keynote from Prof. Gustavo Alonso of ETH Zurich, followed by a tutorial on Quantum databases. The tutorial was conducted by Manish Kesarwani and Prof. Jayant. Eerily, it reminded me of the Topics in Database Systems class that I took with Prof. Jayant earlier, where the "student" presents and the instructor judges him.
+
+(Day5_1.jpg here)
+
+After lunch, we had a plenary session by Prof. Jayant, where he spoke about the database research in India. 
+
+(Day5_2.jpg here)
+
+This was followed by a traditional meal on a banana leaf!. A lot of professors showed up in traditionals:
+
+(Day5_3.jpg here)
+
+Day 6: The Conference closes!
+
+We had a few last workshops, after which the conference concluded with dinner. Only a few people from the organising committee and the student volunteers were present. It was a small, but meaningful, closing. 
+
+(Day6_1.jpg here)
+
+Followed by the dinner, we started from Sheraton Grand at around 8:00 pm. I coordinated with the bus driver one last time, and we start from the hostel shortly after, reaching IISc by 11:00pm.
