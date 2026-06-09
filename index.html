@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suhas Kamath | Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         /* --- CSS VARIABLES FOR EASY COLOR CHANGES --- */
         :root {
-            --primary-color: #2c3e50; /* Dark Blue */
-            --accent-color: #3498db;  /* Light Blue */
-            --text-color: #333;
-            --bg-color: #f4f4f4;
+            --primary-color: #0f172a; /* Deep Slate */
+            --accent-color: #3b82f6;  /* Vibrant Blue */
+            --accent-glow: rgba(59, 130, 246, 0.5);
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --bg-color: #020617; /* Very Dark Navy */
+            --surface-color: #1e293b;
+            --surface-hover: #334155;
             --white: #ffffff;
         }
 
@@ -22,48 +31,60 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
             text-decoration: none;
             color: var(--accent-color);
-            transition: color 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         a:hover {
-            color: var(--primary-color);
+            color: #60a5fa;
+            text-shadow: 0 0 8px var(--accent-glow);
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
         /* --- HEADER & NAVIGATION --- */
         header {
-            background: var(--white);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: all 0.3s ease;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 60px;
+            height: 70px;
         }
 
         .logo {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
@@ -72,101 +93,226 @@
         }
 
         .nav-links li {
-            margin-left: 20px;
+            margin-left: 30px;
         }
 
         .nav-links a {
-            color: var(--primary-color);
+            color: var(--text-color);
             font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* --- HERO SECTION --- */
         .hero {
-            background: var(--white);
-            padding: 60px 0;
+            padding: 100px 0 80px;
             text-align: center;
-            margin-bottom: 30px;
+            position: relative;
         }
 
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--accent-color);
-            margin-bottom: 20px;
-            background-color: #ddd; /* Placeholder color */
+            margin-bottom: 25px;
+            background-color: var(--surface-color);
+            box-shadow: 0 0 0 4px var(--bg-color), 0 0 0 8px var(--accent-color), 0 10px 30px rgba(59, 130, 246, 0.4);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05) rotate(2deg);
         }
 
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: var(--primary-color);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+        }
+        
+        .hero p strong {
+            color: #e2e8f0;
+            font-weight: 500;
         }
 
         .social-links {
-            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .social-links a {
-            margin: 0 10px;
-            font-weight: bold;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .social-links a:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            color: #ffffff;
         }
 
         /* --- CONTENT SECTIONS --- */
         section {
-            background: var(--white);
-            padding: 40px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px;
+            margin-bottom: 40px;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
         }
 
         h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 30px;
             display: inline-block;
-            margin-bottom: 20px;
-            padding-bottom: 5px;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 2px;
         }
 
         .grid-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .card {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 5px;
-            border-left: 4px solid var(--accent-color);
+            background: rgba(15, 23, 42, 0.6);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card h3 {
-            margin-bottom: 10px;
+            font-size: 1.25rem;
+            color: var(--white);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+        
+        .card a {
+            display: inline-flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #60a5fa;
+            margin-top: auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card a:hover {
+            color: #93c5fd;
         }
 
         /* --- FOOTER --- */
         footer {
             text-align: center;
-            padding: 20px;
-            color: #666;
+            padding: 40px 20px;
+            color: var(--text-muted);
             font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
         }
 
         /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            nav { flex-direction: column; height: auto; padding: 10px 0; }
-            .nav-links { margin-top: 10px; }
+            .hero h1 { font-size: 2.5rem; }
+            nav { flex-direction: column; height: auto; padding: 15px 0; gap: 15px; }
+            .nav-links { margin-left: 0; justify-content: center; flex-wrap: wrap; gap: 15px; }
+            .nav-links li { margin: 0; }
+            section { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -180,7 +326,9 @@
                     <li><a href="#about">About</a></li>
                     <!--<li><a href="#research">Research and Interests</a></li>-->
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#extracurriculars">Extracurriculars</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="Resume_Suhas.pdf" download="Resume_Suhas.pdf">Resume</a></li>
                 </ul>
             </nav>
         </div>
@@ -195,6 +343,7 @@
             <p>Brief tagline about what you study or build (e.g., Numerical Analysis, Data Science, or Web Development).</p>
             -->
             <div class="social-links">
+                <a href="Resume_Suhas.pdf" download="Resume_Suhas.pdf" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2)); border-color: rgba(59, 130, 246, 0.4); font-weight: 600; color: #ffffff;">Download Resume</a>
                 <a href="https://github.com/suhaskamath2712">GitHub</a>
                 <a href="https://www.reddit.com/user/tejrani/">Reddit</a>
                 <a href="https://www.linkedin.com/in/suhas-kamath-4472b1215/">LinkedIn</a>
@@ -257,6 +406,22 @@
                     <h3>Parallel Matrix-Vector Multiplication</h3>
                     <p>Implemented parallel matrix-vector multiplication using MPI. Completed as part of the DS221 course project.</p>
                     <a href="https://github.com/suhaskamath2712/ISS_Assignment/tree/main/MPI">View Code &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="extracurriculars">
+            <h2>Extracurricular Activities</h2>
+            <div class="grid-list">
+                <div class="card">
+                    <h3>Lead Volunteer, ACM SIGMOD/PODS 2026</h3>
+                    <p>Served as the lead volunteer for the ACM SIGMOD/PODS 2026 conference.</p>
+                    <a href="https://2026.sigmod.org/" target="_blank">View Website &rarr;</a>
+                </div>
+                <div class="card">
+                    <h3>IISc Calendar 2026 Design</h3>
+                    <p>Designed the official Institution's Innovation Council (IIC) calendar for the Indian Institute of Science for the year 2026.</p>
+                    <a href="https://www.linkedin.com/posts/institution-innovation-council-iic-iisc_iic-calendar-designs-ugcPost-7414228156267700224-qsvM?utm_source=share&utm_medium=member_desktop&rcm=ACoAADZTrDcB0Xc3ZBalmQDPo8MAmC64FkrdKAU" target="_blank">View on LinkedIn &rarr;</a>
                 </div>
             </div>
         </section>

@@ -1,0 +1,18 @@
+# LaTeX auxiliary/build files
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*texput.log
+missfont.log
+
+# Local TeX Live files
+texlive_local/
+my_fmtutil.cnf
+
+# OS-specific files
+.DS_Store
+Thumbs.db
