@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Reviews & Materials | Suhas Kamath</title>
+    <meta name="description"
+        content="A comprehensive review of the coursework completed by Suhas Kamath during his M. Tech in Computational & Data Science at IISc Bengaluru.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- CUSTOM COURSE REVIEW STYLES --- */
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .tab-btn:hover {
+            color: var(--white);
+            background: rgba(59, 130, 246, 0.05);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .tab-btn.active {
+            color: var(--white);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
+        }
+
+        .courses-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .course-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 40px;
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1), border-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.08), transparent 45%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .course-card:hover {
+            border-color: rgba(59, 130, 246, 0.25);
+            box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.4), 0 0 15px rgba(59, 130, 246, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .course-card:hover::before {
+            opacity: 1;
+        }
+
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 20px;
+        }
+
+        .course-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 70%;
+        }
+
+        .course-code {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+        }
+
+        .course-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.5px;
+            line-height: 1.25;
+        }
+
+        .course-meta-badges {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .meta-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .meta-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .badge-semester {
+            background: rgba(139, 92, 246, 0.1);
+            color: #c084fc;
+            border-color: rgba(139, 92, 246, 0.25);
+        }
+
+        .badge-grade {
+            background: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+
+        .badge-grade.highest {
+            background: rgba(16, 185, 129, 0.18);
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
+        }
+
+        .badge-grade.grade-low {
+            background: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+            border-color: rgba(239, 68, 68, 0.25);
+        }
+
+        .badge-review {
+            background: rgba(245, 158, 11, 0.1);
+            color: #fbbf24;
+            border-color: rgba(245, 158, 11, 0.25);
+        }
+
+        .badge-review.review-low {
+            background: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+            border-color: rgba(239, 68, 68, 0.25);
+        }
+
+        .course-description {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.75;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .course-description p {
+            margin-bottom: 0;
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .materials-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .materials-link:hover {
+            color: #ffffff;
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .rating-visualization {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .star-rating {
+            color: #fbbf24;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+
+        .rating-bar-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rating-bar-outer {
+            width: 80px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .rating-bar-inner {
+            height: 100%;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            border-radius: 4px;
+        }
+
+        .rating-bar-inner.low {
+            background: linear-gradient(90deg, #f87171, #ef4444);
+        }
+
+        @media (max-width: 768px) {
+            .course-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .course-title-group {
+                max-width: 100%;
+            }
+
+            .course-meta-badges {
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            .meta-row {
+                justify-content: flex-start;
+                width: 100%;
+            }
+
+            .course-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Suhas Kamath</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="container">
+            <div class="badge fade-in">Graduate Coursework</div>
+            <h1 class="fade-in" style="transition-delay: 0.1s;">Academic Course Reviews</h1>
+            <p class="fade-in"
+                style="font-size: 1.25rem; color: var(--text-muted); font-weight: 300; transition-delay: 0.2s;">
+                A compilation of courses taken during my M. Tech at the Indian Institute of Science, Bengaluru,
+                including reviews, ratings, grades, and code repositories.
+            </p>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Filter Tabs -->
+        <div class="tabs-container fade-in" style="transition-delay: 0.3s;">
+            <button class="tab-btn active" data-filter="all">All Semesters</button>
+            <button class="tab-btn" data-filter="sem1">Semester 1</button>
+            <button class="tab-btn" data-filter="sem2">Semester 2</button>
+        </div>
+
+        <!-- Courses List -->
+        <div class="courses-list">
+
+            <!-- --- SEMESTER 1 --- -->
+
+            <!-- E0261 -->
+            <div class="course-card fade-in" data-semester="sem1">
+                <div class="course-header">
+                    <div class="course-title-group">
+                        <span class="course-code">E0261</span>
+                        <h2 class="course-title">Database Management Systems</h2>
+                    </div>
+                    <div class="course-meta-badges">
+                        <div class="meta-row">
+                            <span class="meta-badge badge-semester">Semester 1</span>
+                            <span class="meta-badge badge-grade highest">Grade: 9 (Highest Awarded)</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-badge badge-review">Review: 10/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description">
+                    <p>This was one of the best courses I have ever taken at IISc, second only to "Topics in Database
+                        Management Systems". This course gives a good overview of database management systems. It covers
+                        topics such as query optimisation, transaction management, concurrency control, and recovery. It
+                        also covers topics such as distributed databases, data warehousing and data mining.</p>
+                    <p>Prof. Jayant's humourous anecdotes keep the class active and engaged, and students genuinely look
+                        forward to the classes. This course is nothing but an epitome of how teaching must be done at
+                        the graduate school level.</p>
+                    <p>The course project is a beautiful addition to the course; which complements the subjects learnt
+                        in the class nicely. It also gives students the chance to interact with industry professionals,
+                        making the course feel special.</p>
+                </div>
+                <div class="course-footer">
+                    <div class="rating-visualization">
+                        <span class="star-rating">★★★★★</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar-outer">
+                                <div class="rating-bar-inner" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://github.com/suhaskamath2712/IISc_E0261_Database_Management_Systems" target="_blank"
+                        class="materials-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        Course Materials &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- DS221 -->
+            <div class="course-card fade-in" data-semester="sem1">
+                <div class="course-header">
+                    <div class="course-title-group">
+                        <span class="course-code">DS221</span>
+                        <h2 class="course-title">Introduction to Scalable Systems</h2>
+                    </div>
+                    <div class="course-meta-badges">
+                        <div class="meta-row">
+                            <span class="meta-badge badge-semester">Semester 1</span>
+                            <span class="meta-badge badge-grade">Grade: 9</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-badge badge-review">Review: 8/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description">
+                    <p>This is the best hardcore course offered by the CDS department. The assignments for this course
+                        are very well designed and cover a wide range of topics. This course gives a good overview of
+                        scalable systems. It covers topics such as data structures, algorithms, basic complexity theory
+                        and parallel computing.</p>
+                    <p>Prof. Satish's classes may seem a bit boring, but they are extremely packed with knowledge. Prof.
+                        Chirag's classes, on the other hand, are more interactive and active. The assignments cover the
+                        theoretical knowledge learnt in class in a proper fashion.</p>
+                </div>
+                <div class="course-footer">
+                    <div class="rating-visualization">
+                        <span class="star-rating">★★★★☆</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar-outer">
+                                <div class="rating-bar-inner" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://github.com/suhaskamath2712/IISc_DS221_Introduction_to_Scalable_Systems"
+                        target="_blank" class="materials-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        Course Materials &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- DS215 -->
+            <div class="course-card fade-in" data-semester="sem1">
+                <div class="course-header">
+                    <div class="course-title-group">
+                        <span class="course-code">DS215</span>
+                        <h2 class="course-title">Introduction to Data Science</h2>
+                    </div>
+                    <div class="course-meta-badges">
+                        <div class="meta-row">
+                            <span class="meta-badge badge-semester">Semester 1</span>
+                            <span class="meta-badge badge-grade">Grade: 8</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-badge badge-review review-low">Review: 6/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description">
+                    <p>This course offers an introduction into the world of data science. However, the course instructor
+                        does not cover the important topics in sufficient clarity. This leaves the student with the task
+                        of picking up the important concepts from external resources, which can be a time consuming and
+                        tedious process.</p>
+                    <p>The instructor, however, tends to be busy at times and gives the reins to the most incapable TAs
+                        possible. The TAs barely have any idea of the subject, and just do not teach anything in class.
+                    </p>
+                </div>
+                <div class="course-footer">
+                    <div class="rating-visualization">
+                        <span class="star-rating">★★★☆☆</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar-outer">
+                                <div class="rating-bar-inner low" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://github.com/suhaskamath2712/IISc_DS215_Introduction_to_Data_Science" target="_blank"
+                        class="materials-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        Course Materials &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- DS288 -->
+            <div class="course-card fade-in" data-semester="sem1">
+                <div class="course-header">
+                    <div class="course-title-group">
+                        <span class="course-code">DS288</span>
+                        <h2 class="course-title">Numerical Methods</h2>
+                    </div>
+                    <div class="course-meta-badges">
+                        <div class="meta-row">
+                            <span class="meta-badge badge-semester">Semester 1</span>
+                            <span class="meta-badge badge-grade">Grade: 8</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-badge badge-review review-low">Review: 6/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description">
+                    <p>This course covers the fundamentals of numerical methods. It covers topics such as solving linear
+                        and non-linear equations, numerical differentiation and integration. The instructor covers in
+                        sufficient depth, but the assessments are kept disjoint from the course content. This leaves the
+                        student with the task of picking up the important concepts from external resources, which can be
+                        a time consuming and tedious process.</p>
+                </div>
+                <div class="course-footer">
+                    <div class="rating-visualization">
+                        <span class="star-rating">★★★☆☆</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar-outer">
+                                <div class="rating-bar-inner low" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://github.com/suhaskamath2712/IISc_DS289_Numerical_Methods" target="_blank"
+                        class="materials-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        Course Materials &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- DS289 -->
+            <div class="course-card fade-in" data-semester="sem1">
+                <div class="course-header">
+                    <div class="course-title-group">
+                        <span class="course-code">DS289</span>
+                        <h2 class="course-title">Numerical Linear Algebra</h2>
+                    </div>
+                    <div class="course-meta-badges">
+                        <div class="meta-row">
+                            <span class="meta-badge badge-semester">Semester 1</span>
+                            <span class="meta-badge badge-grade grade-low">Grade: 7</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-badge badge-review review-low">Review: 1/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description">
+                    <p>This course covers the fundamentals of numerical linear algebra in the first third of the
+                        semester. After that, the course delves into advanced topics which are honestly not useful to
+                        students who aren't willing to join the instructor's lab. This makes the latter two-thirds of
+                        the course feel like too much to bear, considering the course is only three credits.</p>
+                    <p>Furthermore, the exams are kept completely disjoint from the course content making the exams feel
+                        like pure torture. This is not just my opinion; this comes from a class whose average was
+                        9.5/35.</p>
+                    <p>The TAs are even more obnoxious than the instructor. The TAs frequently lie about score
+                        statistics to students, such as inflating the average grade. This makes a huge difference,
+                        especially when the course is relatively graded. The TAs also seem to have ego issues, and give
+                        additional marks to those that "suck up" to them.</p>
+                    <p><strong>This is, by far, the worst course I have taken at IISc.</strong></p>
+                </div>
+                <div class="course-footer">
+                    <div class="rating-visualization">
+                        <span class="star-rating" style="color: #ef4444;">★☆☆☆☆</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar-outer">
+                                <div class="rating-bar-inner low" style="width: 10%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://github.com/suhaskamath2712/IISc_DS289_Numerical_Linear_Algebra" target="_blank"
+                        class="materials-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        Course Materials &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- --- SEMESTER 2 --- -->
+
+            <!-- E0361 -->
+            <div class="course-card fade-in" data-semester="sem2">
+                <div class="course-header">
+                    <div class="course-title-group">
+                        <span class="course-code">E0361</span>
+                        <h2 class="course-title">Topics in Database Systems</h2>
+                    </div>
+                    <div class="course-meta-badges">
+                        <div class="meta-row">
+                            <span class="meta-badge badge-semester">Semester 2</span>
+                            <span class="meta-badge badge-grade highest">Grade: 9 (Highest Awarded)</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-badge badge-review">Review: 10/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description">
+                    <p>This course is the successor to E0261 (Database Management Systems). This is, by far the best
+                        course I have ever taken at IISc. In this course, students have to read research papers and have
+                        to present them to the professor and their peers.</p>
+                    <p>Because the instructor is open-minded, the presentations aren't kept formal; memes and humourous
+                        analogies are actively encouraged. After each presentation, the instructor sends out a list of
+                        research questions that the students need to answer. These questions sometimes cover aspects
+                        outside the research paper, which means that the students have to expand their range of thought.
+                        It is a really good practice.</p>
+                </div>
+                <div class="course-footer">
+                    <div class="rating-visualization">
+                        <span class="star-rating">★★★★★</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar-outer">
+                                <div class="rating-bar-inner" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://github.com/suhaskamath2712/IISc_E0361_Topics_in_Database_Systems" target="_blank"
+                        class="materials-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        Course Materials &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- DS256 -->
+            <div class="course-card fade-in" data-semester="sem2">
+                <div class="course-header">
+                    <div class="course-title-group">
+                        <span class="course-code">DS256</span>
+                        <h2 class="course-title">Scalable Systems for Data Science</h2>
+                    </div>
+                    <div class="course-meta-badges">
+                        <div class="meta-row">
+                            <span class="meta-badge badge-semester">Semester 2</span>
+                            <span class="meta-badge badge-grade highest">Grade: 9 (Highest Awarded)</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-badge badge-review">Review: 8/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description">
+                    <p>This is an extremely practical course. It covers topics such as distributed systems, parallel
+                        computing, and big data processing. The assignments are very well designed and cover a wide
+                        range of topics. The classes are engaging and the instructor ensures that students have a good
+                        understanding of the topics covered.</p>
+                    <p>However, the handling of the course could have been better. The course was supposed to have three
+                        assignments, but the last two were combined due to lack of compute. For the same reason, we were
+                        given only seven "slots" to run the second assignments. The assignments were fun to do, but were
+                        extremely stress-inducing.</p>
+                </div>
+                <div class="course-footer">
+                    <div class="rating-visualization">
+                        <span class="star-rating">★★★★☆</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar-outer">
+                                <div class="rating-bar-inner" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://github.com/suhaskamath2712/IISc_DS256_Scalable_Systems_for_Data_Science"
+                        target="_blank" class="materials-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        Course Materials &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- E0272 -->
+            <div class="course-card fade-in" data-semester="sem2">
+                <div class="course-header">
+                    <div class="course-title-group">
+                        <span class="course-code">E0272</span>
+                        <h2 class="course-title">Formal Methods in Software Engineering</h2>
+                    </div>
+                    <div class="course-meta-badges">
+                        <div class="meta-row">
+                            <span class="meta-badge badge-semester">Semester 2</span>
+                            <span class="meta-badge badge-grade">Grade: 9</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-badge badge-review">Review: 7/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description">
+                    <p>This course is another practical one which delves into various formal provers and tools. Even the
+                        exams tend to be practical. However, the softwares taught are extremely outdated to the point
+                        where a lot of them have stopped active development.</p>
+                    <p>Nevertheless, the course has been a great source of learning in the theoretical space.</p>
+                </div>
+                <div class="course-footer">
+                    <div class="rating-visualization">
+                        <span class="star-rating">★★★★☆</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar-outer">
+                                <div class="rating-bar-inner" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://github.com/suhaskamath2712/IISc_E0272_Formal_Methods_in_Software_Engineering"
+                        target="_blank" class="materials-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        Course Materials &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- DS207 -->
+            <div class="course-card fade-in" data-semester="sem2">
+                <div class="course-header">
+                    <div class="course-title-group">
+                        <span class="course-code">DS207</span>
+                        <h2 class="course-title">Introduction to Natural Language Processing</h2>
+                    </div>
+                    <div class="course-meta-badges">
+                        <div class="meta-row">
+                            <span class="meta-badge badge-semester">Semester 2</span>
+                            <span class="meta-badge badge-grade">Grade: 8</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-badge badge-review review-low">Review: 6/10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description">
+                    <p>This course is a good introduction to the world of natural language processing. However, due to
+                        the sheer enrollment numbers for the course, the enjoyment factor takes a massive hit. The
+                        assignments seem to be designed by AI, which is never welcome in a course wherein the instructor
+                        has banned AI altogether.</p>
+                    <p>Furthermore, the course has two instructors, who kept swapping in and out. Every other class
+                        feels like a new class, and there is no continuity at all, as both the instructors teach
+                        completely differently. This made the course content difficult and hard to follow. The course is
+                        also bloated with too much about machine learning and reinforcement learning, which is honestly
+                        not needed in an NLP course.</p>
+                    <p>There were multiple guest lectures, which are always welcome. However, the instructor decided to
+                        include these guest lectures in the final exam, which is never a good idea.</p>
+                </div>
+                <div class="course-footer">
+                    <div class="rating-visualization">
+                        <span class="star-rating">★★★☆☆</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar-outer">
+                                <div class="rating-bar-inner low" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://github.com/suhaskamath2712/IISc_DS207_Introduction_to_Natural_Language_Processing"
+                        target="_blank" class="materials-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        Course Materials &rarr;
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Suhas Kamath. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Automatically update the year in the footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Scroll animation handler
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.05
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Tabs filtering logic
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const courseCards = document.querySelectorAll('.course-card');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Set active tab class
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                courseCards.forEach(card => {
+                    const semester = card.getAttribute('data-semester');
+
+                    if (filter === 'all' || semester === filter) {
+                        // Show card with fade-in animation
+                        card.style.display = 'flex';
+                        // Small timeout to allow display to be registered, enabling transition
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        // Hide card with transition
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 400);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
